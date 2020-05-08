@@ -1,6 +1,12 @@
-package src2;
+package ejercicio2;
 
 import java.io.IOException;
+
+    /**
+     * Entrada para ejecución del ejercicio 2
+     * @author Guillermo Casas
+     * @author g.casas.r94@gmail.com
+     */
 
 public class main {       
     // MAIN

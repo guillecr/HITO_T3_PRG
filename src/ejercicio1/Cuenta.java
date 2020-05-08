@@ -1,5 +1,10 @@
-package src1;
+package ejercicio1;
 
+    /**
+     * Clase Cuenta
+     * @author Guillermo Casas
+     * @author g.casas.r94@gmail.com
+     */
 public class Cuenta {
     // Atributos
     String titular;

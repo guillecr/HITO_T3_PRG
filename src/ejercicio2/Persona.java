@@ -1,5 +1,10 @@
-package src2;
+package ejercicio2;
 
+    /**
+     * Clase Persona
+     * @author Guillermo Casas
+     * @author g.casas.r94@gmail.com
+     */
 public class Persona {
     // Constantes
     final int minIMC = 20;

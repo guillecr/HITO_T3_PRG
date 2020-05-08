@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package src2;
+package ejercicio2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- *
- * @author guille_linux
+ * Clase para lectura por teclado
+ * @author Guillermo Casas
+ * @author g.casas.r94@gmail.com
  */
 public class Entrada {
     // Atributos
@@ -22,7 +18,7 @@ public class Entrada {
     // Objeto de lectura
     private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    // Getter y setter
+    // ============= Getter y setter ===========================================
     public String getSentrada() {
         return Sentrada;
     }
@@ -47,15 +43,28 @@ public class Entrada {
         this.FloatSalida = FloatSalida;
     }
 
-    // Contructor
+    // ============= CONTRUCTOR ================================================
     public Entrada() {
     }
     
-    // Metodos propios
+    // =================== METODOS PROPIOS =====================================
+    
+    /**
+     * Metodo para lectura de una cadena de caracteres.
+     * @return Devuelve el String introducido por teclado
+     * @throws IOException 
+     */
     public  String lecturaString() throws IOException{
         return br.readLine();
     }
     
+    /**
+     * Metodo para lectura de un numero entero introducido por teclado
+     * Si se introduce un valor no valido, devolvera un error y pedirá de nuevo
+     * que se introduzca un valor valido
+     * @return Valor entero introducido por teclado
+     * @throws IOException 
+     */
     public  int lecturaInt() throws IOException{
         setSentrada(br.readLine());
         try{
@@ -67,6 +76,13 @@ public class Entrada {
         }
         return IntSalida;
     }
+    /**
+     * Metodo para lectura de un numero real (float) introducido por teclado
+     * Si se introduce un valor no valido, devolvera un error y pedirá de nuevo
+     * que se introduzca un valor valido
+     * @return Valor float (numero real) introducido por teclado
+     * @throws IOException 
+     */
     public float lecturaFloat() throws IOException {
         setSentrada(br.readLine());
         try{
