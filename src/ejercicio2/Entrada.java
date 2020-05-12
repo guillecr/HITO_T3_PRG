@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
  * Clase para lectura por teclado
  * @author Guillermo Casas
  * @author g.casas.r94@gmail.com
+ * @version 1.120520
  */
 public class Entrada {
     // Atributos
@@ -43,7 +44,7 @@ public class Entrada {
         this.FloatSalida = FloatSalida;
     }
 
-    // ============= CONTRUCTOR ================================================
+    // =================== CONTRUCTOR ==========================================
     public Entrada() {
     }
     

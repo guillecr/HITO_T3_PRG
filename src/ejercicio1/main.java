@@ -4,6 +4,7 @@ package ejercicio1;
      * Entrada para ejecucion del ejercicio 1 (No pedido)
      * @author Guillermo Casas
      * @author g.casas.r94@gmail.com
+     * @version 1.120520
      */
 
 public class main {

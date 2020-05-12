@@ -1,4 +1,6 @@
-/JavaApplication4/nbproject/private/
-/HITO/nbproject/private/
+/src/srcTest/
+/nbproject/
 /build/
-/nbproject/private/
+/build.xml
+/test/
+/manifest.mf

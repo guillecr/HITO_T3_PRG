@@ -4,6 +4,7 @@ package ejercicio1;
      * Clase Cuenta
      * @author Guillermo Casas
      * @author g.casas.r94@gmail.com
+     * @version 1.120520
      */
 public class Cuenta {
     // Atributos

@@ -4,6 +4,7 @@ package ejercicio2;
      * Clase Persona
      * @author Guillermo Casas
      * @author g.casas.r94@gmail.com
+     * @version 1.120520
      */
 public class Persona {
     // Constantes
@@ -42,7 +43,7 @@ public class Persona {
     public void setSexo(char sexo){
            this.sexo = sexo;
     }
-
+    
     public float getPeso(){
         return peso;
     }
@@ -109,8 +110,10 @@ public class Persona {
     public int calcularIMC(){
         int result = -1;
         double IMC = mathIMC();
-        if(IMC >= minIMC){result++;}
-        if(IMC > maxIMC){result++;}
+        if(IMC >= minIMC){
+            result++;
+            if(IMC > maxIMC){result++;}
+        }
         return result;
     }
 
