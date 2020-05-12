@@ -39,10 +39,10 @@ public class Cuenta {
         return "Titular: "+getTitular()+" // Saldo: "+getCantidad();
     }
 
-    // METODOS PROPIOS
+    // MÉTODOS PROPIOS
     /**
-     * Funcion para añadir dinero a la cuenta
-     * Si el ingreso es negativo, la función no añadira nada
+     * Función para añadir dinero a la cuenta
+     * Si el ingreso es negativo, la función no añadirá nada
      * @param ingreso Valor double con el dinero a ingresar
      */
     public void ingresoDinero(double ingreso){
@@ -52,9 +52,9 @@ public class Cuenta {
     }
 	
     /**
-     * Funcion para restar dinero de una cuenta
+     * Función para restar dinero de una cuenta
      * Si el retiro supera la cantidad de dinero en la cuenta, 
-     * la función pondra la cuenta a 0 (nunca quedará negatoiva la cuenta)
+     * la función pondrá la cuenta a 0 (nunca quedará negativa la cuenta)
      * @param retirar Valor double con el dinero a restar
      */
     public void retirarDinero(double retirar){

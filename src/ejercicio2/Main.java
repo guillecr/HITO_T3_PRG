@@ -9,12 +9,12 @@ import java.io.IOException;
      * @version 1.120520
      */
 
-public class main {       
+public class Main {       
     // MAIN
     public static void main(String[] args) throws IOException{
         System.out.println("Ejercicio de personas");
         
-        // Variables de sesion
+        // Variables de sesión
         String nombre, dni, sexo;
         int edad;
         float peso,altura;
@@ -48,7 +48,7 @@ public class main {
         per[1] = new Persona(nombre, edad, sexo);
         per[2] = new Persona();
         
-        // Analisis de los objetos
+        // Análisis de los objetos
         System.out.println("\nAnalisis de objetos");
         for(int i=0;i<per.length;i++){
             System.out.println("\nObjeto "+(i+1));

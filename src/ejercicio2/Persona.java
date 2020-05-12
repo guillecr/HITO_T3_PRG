@@ -63,7 +63,7 @@ public class Persona {
     public Persona(){
     }
     /**
-     * Contructor de una nueva persona con 3 parametros
+     * Constructor de una nueva persona con 3 parámetros
      * @param nombre Nombre de la persona (String)
      * @param edad Edad de la persona (entero)
      * @param sexo Sexo de la persona (String)
@@ -75,13 +75,13 @@ public class Persona {
         this.dni = generarDNI();
     }
     /**
-     * Contructor con todos los parametros asignables
+     * Constructor con todos los parámetros asignables
      * @param nombre Nombre de la persona (String)
      * @param edad Edad de la persona (Entero)
      * @param sexo Sexo de la persona (String)
-     * @param dni DNI de la persona (Numero y letra)
-     * @param peso Peso de la persona en Kg (Numero real)
-     * @param altura Altura de la persona en cm (Numero real)
+     * @param dni DNI de la persona (Número y letra)
+     * @param peso Peso de la persona en Kg (Número real)
+     * @param altura Altura de la persona en cm (Número real)
      */
     public Persona(String nombre, int edad, String sexo, String dni, float peso, float altura){
         this.nombre = nombre;
@@ -94,18 +94,18 @@ public class Persona {
 
     // ============= METODOS PROPIOS ===========================================
     /**
-     * Calculo numerico de la IMC.
+     * Cálculo numérico de la IMC.
      * Calculará la IMC con los atributos del objeto y devolverá su resultado
-     * @return Valor double con el resultado del calculo
+     * @return Valor double con el resultado del cálculo
      */
     private double mathIMC(){
         double IMC = getPeso()/Math.pow(getAltura(),2);
         return IMC;
     }
     /**
-     * Comprobación de si el IMC (resultante de la funcion mathIMC()) esta o no en los margenes idoneos marcado 
+     * Comprobación de si el IMC (resultante de la función mathIMC()) está o no en los márgenes idóneos marcado 
      * en las constantes minIMC y maxIMC
-     * @return Valor entero con el resultado del analisis (-1 = por debajo // 0 = IMC correcto // 1 = Por encima)
+     * @return Valor entero con el resultado del análisis (-1 = por debajo // 0 = IMC correcto // 1 = Por encima)
      */
     public int calcularIMC(){
         int result = -1;
@@ -118,8 +118,8 @@ public class Persona {
     }
 
     /**
-     * Comprobador si el mayor de edad
-     * Comparará la edad asignada al objeto a su constante que marca la edad minima para ser considerado mayor de edad
+     * Comprobar si el mayor de edad
+     * Comparará la edad asignada al objeto a su constante que marca la edad mínima para ser considerado mayor de edad
      * @return Booleano con el resultado de la comprobación (True = Mayor de edad // False = Menor de edad)
      */
     public boolean esMayorDeEdad(){
@@ -130,13 +130,13 @@ public class Persona {
         return test;
     }
 
-    /**
-     * Comprobador del sexo introducido. Si este no es valido, se añadirá el por defecto.
-     * En si, la función analizara solo el primer caracter independiente de si es minuscula o mayusculas.
+   /**
+     * Comprobador del sexo introducido. Si este no es válido, se añadirá el por defecto.
+     * En si, la función analizará solo el primer carácter independiente de si es minúscula o mayúsculas.
      * Por ello permite introducir H, h u Hombre.
      * 
      * @param sexo String para analizar 
-     * @return char con el caracter identificador ('H'=Hombre // 'M'=Mujer)
+     * @return char con el carácter identificador ('H'=Hombre // 'M'=Mujer)
      */
     private char comprobarSexo(String sexo){
         sexo = sexo.toUpperCase();
@@ -147,9 +147,9 @@ public class Persona {
         return sexoCh;
     }
 
-    /**
-     * Metodo toString para obtener un String con todos los parametros del objecto
-     * @return String con todos los parametros del objecto
+     /**
+     * Método toString para obtener un String con todos los parámetros del objeto
+     * @return String con todos los parámetros del objeto
      */
     public String toString(){
         String text = ""+
@@ -165,17 +165,17 @@ public class Persona {
 
     // Funciones DNI
     /**
-     * Generador un DNI (numero + letra) aleatorio valido
-     * @return String con el numero y letra generado
+     * Generador un DNI (número + letra) aleatorio válido
+     * @return String con el número y letra generado
      */
     private String generarDNI(){
         int num = (int)(Math.random()*(Math.pow(10, numsDNI)-Math.pow(10,numsDNI-1))+Math.pow(10,numsDNI-1));
         return String.valueOf(num)+generarLetraDNI(num);
     }
     /**
-     * Calcula la letra que le corresponde a un numero de DNI
-     * @param dni Valor entero del numero DNI al que generar su letra
-     * @return String con la letra correspondiente al numero entregado
+     * Calcula la letra que le corresponde a un número de DNI
+     * @param dni Valor entero del número DNI al que generar su letra
+     * @return String con la letra correspondiente al número entregado
      */
     private String generarLetraDNI(int dni){
         
@@ -183,10 +183,10 @@ public class Persona {
         return letra;
     }
     /**
-     * Comprobador de validez del numero DNI por comparación de la letra entregada y su letra calculada
+     * Comprobador de validez del número DNI por comparación de la letra entregada y su letra calculada
      * Si el DNI no es correcto, generará uno nuevo
-     * @param dni String con el valor del DNI (numero + letra)
-     * @return Devuelve siempre un DNI valido, el entregado o uno aleatorio si el entregado no era valido
+     * @param dni String con el valor del DNI (número + letra)
+     * @return Devuelve siempre un DNI válido, el entregado o uno aleatorio si el entregado no era válido
      */
     private String comprobarDNI(String dni){
         int num=0;

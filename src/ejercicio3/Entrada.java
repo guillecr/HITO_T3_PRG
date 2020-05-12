@@ -1,4 +1,4 @@
-package ejercicio2;
+package ejercicio3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -48,10 +48,10 @@ public class Entrada {
     public Entrada() {
     }
     
-    // =================== MÉTODOS PROPIOS =====================================
+    // =================== METODOS PROPIOS =====================================
     
     /**
-     * Método para lectura de una cadena de caracteres.
+     * Metodo para lectura de una cadena de caracteres.
      * @return Devuelve el String introducido por teclado
      * @throws IOException 
      */
@@ -60,10 +60,11 @@ public class Entrada {
     }
     
     /**
-     * Método para lectura de un número entero introducido por teclado
-     * Si se introduce un valor no válido, devolverá un error y pedirá de nuevo
-     * que se introduzca un valor válido
+     * Metodo para lectura de un numero entero introducido por teclado
+     * Si se introduce un valor no valido, devolvera un error y pedirá de nuevo
+     * que se introduzca un valor valido
      * @return Valor entero introducido por teclado
+     * @throws IOException 
      */
     public  int lecturaInt() throws IOException{
         setSentrada(br.readLine());
@@ -76,11 +77,12 @@ public class Entrada {
         }
         return IntSalida;
     }
-   /**
-     * Método para lectura de un número real (float) introducido por teclado
-     * Si se introduce un valor no válido, devolverá un error y pedirá de nuevo
-     * que se introduzca un valor válido
+    /**
+     * Metodo para lectura de un numero real (float) introducido por teclado
+     * Si se introduce un valor no valido, devolvera un error y pedirá de nuevo
+     * que se introduzca un valor valido
      * @return Valor float (numero real) introducido por teclado
+     * @throws IOException 
      */
     public float lecturaFloat() throws IOException {
         setSentrada(br.readLine());
