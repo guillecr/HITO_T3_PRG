@@ -39,14 +39,23 @@ public class Cuenta {
     }
 
     // METODOS PROPIOS
-    // Ingreso de dinero
+    /**
+     * Funcion para añadir dinero a la cuenta
+     * Si el ingreso es negativo, la función no añadira nada
+     * @param ingreso Valor double con el dinero a ingresar
+     */
     public void ingresoDinero(double ingreso){
         if(ingreso>0){
             setCantidad(getCantidad()+ingreso);
         }
     }
 	
-    // Retirada de dinero
+    /**
+     * Funcion para restar dinero de una cuenta
+     * Si el retiro supera la cantidad de dinero en la cuenta, 
+     * la función pondra la cuenta a 0 (nunca quedará negatoiva la cuenta)
+     * @param retirar Valor double con el dinero a restar
+     */
     public void retirarDinero(double retirar){
         setCantidad(getCantidad()-retirar);
         if(getCantidad()<0){

@@ -16,12 +16,16 @@ public class main {
         // Variables de sesion
         String nombre, dni, sexo;
         int edad;
-        float peso,altura;        
+        float peso,altura;
+        
+        // Libreria que albergará nuestros objetos
+        Persona[] per = new Persona[3];
         
         // Constantes Mensajes
         final String[] IMCmensajeS = {"tiene un IMC por debajo de lo norma","esta en su peso ideal","tiene un IMC por encima de lo normal"};
         final String[] MayorMensaje = {"Es menor de edad","Es mayor de edad"};
         
+        // Instancia de la clase de lectura por teclado
         Entrada leer = new Entrada();
         
         // Entradas por teclado
@@ -37,10 +41,8 @@ public class main {
         peso = leer.lecturaFloat();
         System.out.print("Altura (cm): ");
         altura = leer.lecturaFloat();
-        
 
         // Generamos nuestros objectos
-        Persona[] per = new Persona[3];
         per[0] = new Persona(nombre, edad, sexo, dni, peso, altura);
         per[1] = new Persona(nombre, edad, sexo);
         per[2] = new Persona();

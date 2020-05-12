@@ -15,6 +15,5 @@ public class main {
         System.out.println(santander.toString());
         santander.retirarDinero(100);
         System.out.println(santander.toString());
-    }
-    
+    } 
 }
