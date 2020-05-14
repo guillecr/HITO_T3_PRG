@@ -4,17 +4,9 @@ package ejercicio3;
  * Clase Password
  * @author Guillermo Casas Reche
  * @author g.casas.r94@gmail.com
- * @version 0.120520
+ * @version 0.140520
  */
-public class Password {
-    /*
-
-Los métodos que implementa serán:
- esFuerte(): devuelve un booleano si es fuerte o no, para que sea fuerte debe tener más de 4,
-mayúsculas, más de 1 minúscula y mas de 5 números.
-
-    */
-    
+public class Password {  
     // =============================================
     // ================ ATRIBUTOS ==================
     // =============================================
@@ -33,9 +25,9 @@ mayúsculas, más de 1 minúscula y mas de 5 números.
     final private int longPwMin=5;
     final private String[] abcS={"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","y","z"};
     final private float factAB12 = 3F; // MAX: 5 :: Factor de probabilidad de letras y números en la PW (3 => 3/5 = 60% letras) 
-    final private int forceUPPER=4;
-    final private int forceLOWER=1;
-    final private int forceNUM=5;
+    final private int forceUPPER=5;
+    final private int forceLOWER=2;
+    final private int forceNUM=6;
     
     
     // =============================================    
@@ -68,10 +60,10 @@ mayúsculas, más de 1 minúscula y mas de 5 números.
     public String[] getAbcS() {
         return abcS;
     }
+
     public String getAbcS(int index){
         return abcS[index];
     }
-
     public float getFactAB12() {
         return factAB12;
     }
@@ -118,12 +110,12 @@ mayúsculas, más de 1 minúscula y mas de 5 números.
     // =============================================
     public Password() {
         this.longPw = this.longPwDef;
-        this.pw = generarPasswor();
+        this.pw = generarPassword();
     }
     
     public Password(int longPw) {
         this.longPw = longPw;
-        this.pw = this.generarPasswor();
+        this.pw = generarPassword();
     }
 
     // =============================================
@@ -132,7 +124,6 @@ mayúsculas, más de 1 minúscula y mas de 5 números.
     public String toString() {
         return "Password{" + "longPw=" + longPw + ", pw=" + pw + ", countABC=" + countABC + ", countABCupper=" + countABCupper + ", countNum=" + countNum + '}';
     }
-    
     
     // =============================================
     // ========= MÉTODOS PROPIOS ===================
@@ -145,75 +136,23 @@ mayúsculas, más de 1 minúscula y mas de 5 números.
      * @return 
      */
     public boolean esFuerte(){
-        boolean bFuerte=false;
-        if (getCountABCupper()<=getForceUPPER()){
+        boolean bFuerte=true;
+        if (getCountABCupper()<getForceUPPER()){
             bFuerte=false;
-            System.out.print(" Fallo en las mayusculas ");
+            //System.out.print(" Fallo en las mayusculas ");
         }
-        if (getCountABC()-getCountABCupper()<=getForceLOWER()){
+        if (getCountABC()-getCountABCupper()<getForceLOWER()){
             bFuerte=false;
-            System.out.print(" Fallo en las minusculas ");
+            //System.out.print(" Fallo en las minusculas ");
         }
-        if (getCountNum()<=getForceNUM()){
+        if (getCountNum()<getForceNUM()){
             bFuerte=false;
-            System.out.print(" Fallo en los numeros ");
+            //System.out.print(" Fallo en los numeros ");
         }
-        System.out.println("");
+        //System.out.println("");
         return bFuerte;
     }
-    
-    /**
-     *  Metodo principal para generar una nueva contraseña aleatoria
-     * Tomará la longitud del atributo del objeto. Si ese no cumple
-     * con las condiciones de longitud, se usara la lingitud por defecto
-     * @return {String} Nueva contraseña
-     */
-    private String generarPasswor(){
-        String newPw="";
-        
-        // Testeo de la contraseña
-        if(getLongPw()<getLongPwMin() && getLongPw()>getLongPwMax()){
-            setLongPw(getLongPwDef());
-        }
-        
-        // Variables locales empleadas
-        int n1;
-        String letra;
-        
-        for(int i=0;i<getLongPw();i++){
-            // Nivel 1: Elección de número o letra
-            n1 = numRand(0,100);
-            int factor = (int)((double)(getFactAB12()/5.0)*100);
-            //System.out.println("Factor: "+factor);
-            if (n1<factor){
-                // El caracter será una letra
-                letra = RanABC();
-                countABC++;
-            }else{
-                // El caracter sera un numero
-                letra = String.valueOf(numRand(0,10));
-                countNum++;
-            }
-            newPw += letra;
-        }
-
-        return newPw;
-    }
-    
-    /**
-     *  Metodo para generar una letra aleatoria
-     * Habra un 50% de posibilidad de ser o no mayúscula
-     * @return Letra aleatoria
-     */
-    private String RanABC(){
-        String letra = getAbcS(numRand(0,getAbcS().length));
-        if(numRand(0,100)<50){
-            letra = letra.toUpperCase();
-            countABCupper++;
-        }
-        return letra;
-    }
-    
+      
     /**
      * Metodo para generar numeros aleatorios
      * @param min Valor minimo
@@ -224,8 +163,89 @@ mayúsculas, más de 1 minúscula y mas de 5 números.
         float nF = (float)(Math.random()*(max-min))+min;
         return (int)nF;
     }
+    /**
+     * Funcion general para generar contraseñas. Este se generará en funcion de 
+     * los parametros FORCE de la clase. Pasos:
+     * - Verificará si la longitud es valida, de no serla dara la longitud por defecto
+     * - De manera aleatoria de decidirá si se escribe letra o numero. Si el elegido
+     * a llegado al tope se cambiara por el otro.
+     * 
+     * @return Contraseña generada
+     */
+    private String generarPassword(){
+        // Testeo de la longitud
+        if(getLongPw()<getLongPwMin() || getLongPw()>getLongPwMax()){
+            setLongPw(getLongPwDef());
+        }
+        // Variables locales
+        String newPW=""; // String donde iremos generando la contraseña
+        this.countABCupper=0;   // Reseteo de contadores (Contador de mayusculas)
+        this.countABC=0;        // Reseteo de contadores (Contador de letras)
+        this.countNum=0;        // Reseteo de contadores (Contador de numeros)
+        
+        // Bucle como parametro de vueltas el tamaño de la contraseña. A cada vuelta
+        // generará un nuevo caracter
+        for(int i=0;i<getLongPw();i++){
+            // Esta variable decidira si generamos un numero o una letra. Por 
+            // defecto sera impar => numero
+            int numABC=1; 
+            
+            // Si el numero aleatorio es menor de 50, cambiamos el numABC a par
+            if(numRand(0,100)<50){
+                numABC++;
+            }
+            
+            // Si se alcanza el numero de caracteres para el tipo elegido (num o letra)
+            // se cambiara (par + 1 = impar  //  impar + 1 = par)
+            if(
+                ((numABC == 2) && (getCountABC()>=(getForceLOWER()+getForceUPPER())))
+                ||
+                ((numABC == 1) && (getCountNum()>=getForceNUM()))
+            ){
+                numABC++;
+            }
+            switch(numABC%2){
+                case 0:
+                    setCountABC(getCountABC()+1);
+                    newPW += RanABC();
+                    break;
+                default:
+                    setCountNum(getCountNum()+1);
+                    newPW += String.valueOf(numRand(0,10));
+                    break;
+            }
+        }
+
+        return newPW;
+    }
     
-    
-    
-    
+    /**
+     * Metodo para generar una letra aleatoria. 
+     * Habra un 60% de posibilidad de ser mayúscula.
+     * Si se ha llegado al maximo de de mayusculas o minusculas se cambiara por su contrario
+     * @return Letra aleatoria
+     */
+    private String RanABC(){
+        String letra = getAbcS(numRand(0,getAbcS().length));
+        int uppLOW=0;
+        
+        if(numRand(0,100)>40){
+            letra = letra.toUpperCase();
+            setCountABCupper(getCountABCupper()+1);
+            uppLOW++;
+        }
+        if(getCountABCupper()>getForceUPPER() || (getCountABC()-getCountABCupper())>getForceLOWER()){
+            switch (uppLOW){
+                case 0:
+                    letra = letra.toUpperCase();
+                    setCountABCupper(getCountABCupper()+1);
+                    break;
+                case 1:
+                    letra = letra.toLowerCase();
+                    setCountABCupper(getCountABCupper()-1);
+                    break;
+            }
+        }
+        return letra;
+    }
 }
