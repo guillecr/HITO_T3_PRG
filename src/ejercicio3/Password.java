@@ -4,7 +4,7 @@ package ejercicio3;
  * Clase Password
  * @author Guillermo Casas Reche
  * @author g.casas.r94@gmail.com
- * @version 0.140520
+ * @version 0.140520.2
  */
 public class Password {  
     // =============================================
@@ -25,9 +25,9 @@ public class Password {
     final private int longPwMin=5;
     final private String[] abcS={"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","y","z"};
     final private float factAB12 = 3F; // MAX: 5 :: Factor de probabilidad de letras y números en la PW (3 => 3/5 = 60% letras) 
-    final private int forceUPPER=5;
-    final private int forceLOWER=2;
-    final private int forceNUM=6;
+    final private int hardUPPER=5;
+    final private int hardLOWER=2;
+    final private int hardNUM=6;
     
     
     // =============================================    
@@ -92,16 +92,16 @@ public class Password {
         this.countNum = contNum;
     }
 
-    public int getForceUPPER() {
-        return forceUPPER;
+    public int getHardUPPER() {
+        return hardUPPER;
     }
 
-    public int getForceLOWER() {
-        return forceLOWER;
+    public int getHardLOWER() {
+        return hardLOWER;
     }
 
-    public int getForceNUM() {
-        return forceNUM;
+    public int getHardNUM() {
+        return hardNUM;
     }
     
 
@@ -132,24 +132,21 @@ public class Password {
     /**
      * Metodo que analiza la seguridad de la contraseña
      * Para que se determine como segura debe de cumplir con las
-     * constantes FORCE
+     * constantes HARD
      * @return 
      */
     public boolean esFuerte(){
         boolean bFuerte=true;
-        if (getCountABCupper()<getForceUPPER()){
+        if (getCountABCupper()<getHardUPPER()){
             bFuerte=false;
-            //System.out.print(" Fallo en las mayusculas ");
+            
         }
-        if (getCountABC()-getCountABCupper()<getForceLOWER()){
+        if (getCountABC()-getCountABCupper()<getHardLOWER()){
             bFuerte=false;
-            //System.out.print(" Fallo en las minusculas ");
         }
-        if (getCountNum()<getForceNUM()){
+        if (getCountNum()<getHardNUM()){
             bFuerte=false;
-            //System.out.print(" Fallo en los numeros ");
         }
-        //System.out.println("");
         return bFuerte;
     }
       
@@ -165,7 +162,7 @@ public class Password {
     }
     /**
      * Funcion general para generar contraseñas. Este se generará en funcion de 
-     * los parametros FORCE de la clase. Pasos:
+     * los parametros HARD de la clase. Pasos:
      * - Verificará si la longitud es valida, de no serla dara la longitud por defecto
      * - De manera aleatoria de decidirá si se escribe letra o numero. Si el elegido
      * a llegado al tope se cambiara por el otro.
@@ -198,16 +195,16 @@ public class Password {
             // Si se alcanza el numero de caracteres para el tipo elegido (num o letra)
             // se cambiara (par + 1 = impar  //  impar + 1 = par)
             if(
-                ((numABC == 2) && (getCountABC()>=(getForceLOWER()+getForceUPPER())))
+                ((numABC == 2) && (getCountABC()>=(getHardLOWER()+getHardUPPER())))
                 ||
-                ((numABC == 1) && (getCountNum()>=getForceNUM()))
+                ((numABC == 1) && (getCountNum()>=getHardNUM()))
             ){
                 numABC++;
             }
             switch(numABC%2){
                 case 0:
                     setCountABC(getCountABC()+1);
-                    newPW += RanABC();
+                    newPW += abcRand();
                     break;
                 default:
                     setCountNum(getCountNum()+1);
@@ -215,7 +212,6 @@ public class Password {
                     break;
             }
         }
-
         return newPW;
     }
     
@@ -225,16 +221,22 @@ public class Password {
      * Si se ha llegado al maximo de de mayusculas o minusculas se cambiara por su contrario
      * @return Letra aleatoria
      */
-    private String RanABC(){
+    private String abcRand(){
+        // Obtenemos una letra aleatoria en minuscula
         String letra = getAbcS(numRand(0,getAbcS().length));
-        int uppLOW=0;
+        int uppLOW=0; // Variable de control si se requiere de cambio ( 0 => minuscula // 1=> Mayuscula )
         
+        // Elección aleatoria para transformación a mayúscula de la letra
         if(numRand(0,100)>40){
             letra = letra.toUpperCase();
-            setCountABCupper(getCountABCupper()+1);
-            uppLOW++;
+            setCountABCupper(getCountABCupper()+1); // Aumentamos el contador de mayúsculas
+            uppLOW++; // Indicamos que el caracter es mayúscula
         }
-        if(getCountABCupper()>getForceUPPER() || (getCountABC()-getCountABCupper())>getForceLOWER()){
+        
+        // Si alcanzamos el limite marcado por HARD invertimos el tipo de letra (mayusculas / minusculas)
+        // Tambien corregimos el contador ABCupper
+        // numeroMinusculas = numeroTotal - numeroMayusculas
+        if(getCountABCupper()>getHardUPPER() || (getCountABC()-getCountABCupper())>getHardLOWER()){
             switch (uppLOW){
                 case 0:
                     letra = letra.toUpperCase();
