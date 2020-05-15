@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
  * Clase para lectura por teclado
  * @author Guillermo Casas
  * @author g.casas.r94@gmail.com
- * @version 1.120520
+ * @version 1.150520
  */
 public class Entrada {
     // Atributos
@@ -56,7 +56,12 @@ public class Entrada {
      * @throws IOException 
      */
     public  String lecturaString() throws IOException{
-        return br.readLine();
+        String lec = br.readLine();
+        if(lec.length()<1){
+            System.out.print("[ERROR]: Dato no valido, introduce dato valido (String): ");
+            lec = lecturaString();
+        }
+        return lec;
     }
     
     /**
